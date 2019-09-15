@@ -9,6 +9,7 @@ public class Container {
 
     private final IngredientType ingredientType;
     private final int capacity;
+
     private int currentAmount;
 
     public Container(IngredientType ingredientType, int capacity) {

@@ -3,8 +3,8 @@ package io.shalastra.models;
 import lombok.Getter;
 import lombok.ToString;
 
-@ToString
 @Getter
+@ToString
 public class Recipe {
 
     private final int requiredGrainsAmount;
