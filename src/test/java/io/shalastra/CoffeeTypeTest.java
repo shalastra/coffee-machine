@@ -11,7 +11,7 @@ public class CoffeeTypeTest {
     @Test
     public void createEspresso_shouldReturnEspressoCoffeeType() {
         String coffeeName = "espresso";
-        Coffee espresso = new Coffee("espresso", new Recipe(10, 10));
+        Coffee espresso = new Coffee(coffeeName, new Recipe(10, 10));
 
         assertEquals("Coffee name should be equals", coffeeName, espresso.getName());
     }
@@ -19,10 +19,11 @@ public class CoffeeTypeTest {
     @Test
     public void createFlatWhite_shouldReturnFlatWhiteCoffeeType() {
         String coffeeName = "flat white";
+        int milkAmount = 20;
 
-        Coffee flatWhite = new Coffee("flat white", new Recipe(10, 10, 20));
+        Coffee flatWhite = new Coffee(coffeeName, new Recipe(10, 10, milkAmount));
 
         assertEquals("Coffee name should be equals", coffeeName, flatWhite.getName());
-        assertEquals("Coffee required amount of milk should be equals", 10, flatWhite.getRecipe().getRequiredMilkAmount());
+        assertEquals("Coffee required amount of milk should be equals", milkAmount, flatWhite.getRecipe().getRequiredMilkAmount());
     }
 }
