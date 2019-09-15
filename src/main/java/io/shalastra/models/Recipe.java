@@ -1,7 +1,9 @@
 package io.shalastra.models;
 
 import lombok.Getter;
+import lombok.ToString;
 
+@ToString
 @Getter
 public class Recipe {
 
