@@ -20,7 +20,7 @@ public class Container {
     public void setCurrentAmount(int amount) {
         int newAmount = this.currentAmount - amount;
 
-        if(newAmount <= 0) {
+        if (newAmount <= 0) {
             refill();
         } else {
             this.currentAmount = newAmount;
