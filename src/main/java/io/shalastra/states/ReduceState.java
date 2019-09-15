@@ -19,9 +19,9 @@ public class ReduceState implements State {
     }
 
     private void reduce(CoffeeMachine coffeeMachine, Recipe recipe) {
-        coffeeMachine.getWaterTank().setCurrentAmount(recipe.getRequiredWaterAmount());
-        coffeeMachine.getCoffeeDispenser().setCurrentAmount(recipe.getRequiredGrainsAmount());
-        coffeeMachine.getMilkTank().setCurrentAmount(recipe.getRequiredMilkAmount());
+        coffeeMachine.getWaterTank().reduceCurrentAmount(recipe.getRequiredWaterAmount());
+        coffeeMachine.getCoffeeDispenser().reduceCurrentAmount(recipe.getRequiredGrainsAmount());
+        coffeeMachine.getMilkTank().reduceCurrentAmount(recipe.getRequiredMilkAmount());
     }
 
     @Override

@@ -18,7 +18,7 @@ public class Container {
         this.currentAmount = this.capacity;
     }
 
-    public void setCurrentAmount(int amount) {
+    public void reduceCurrentAmount(int amount) {
         this.currentAmount = this.currentAmount - amount;
     }
 
