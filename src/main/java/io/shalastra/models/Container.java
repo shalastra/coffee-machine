@@ -19,17 +19,10 @@ public class Container {
     }
 
     public void setCurrentAmount(int amount) {
-        int newAmount = this.currentAmount - amount;
-
-        if (newAmount <= 0) {
-            refill();
-        } else {
-            this.currentAmount = newAmount;
-        }
+        this.currentAmount = this.currentAmount - amount;
     }
 
-    private void refill() {
-        log.info("Oh no!, {} container is almost empty, refilling...", this.ingredientType.name());
+    public void refill() {
         this.currentAmount = this.capacity;
     }
 }
