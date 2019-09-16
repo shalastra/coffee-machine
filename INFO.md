@@ -10,6 +10,8 @@ To run it, simple execute the following command:
 Problematic part of implementing State pattern is hardcoding states and transitions. Usually it is a bad practice, but there are some cases, where it is not a problem. 
 The coffee machine is a good example of State Machine pattern. We have to have defined order of transitions otherwise the machine will not behave as we want.  
 
+Since State objects are light, there is no need to use Object Pool and reuse them. GC will do enough.
+
 #### Assumptions
 Several assumptions have been made. 
  - Coffee machine is refilling automatically. 
