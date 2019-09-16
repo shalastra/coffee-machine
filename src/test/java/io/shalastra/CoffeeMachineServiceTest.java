@@ -4,6 +4,7 @@ import io.shalastra.models.Coffee;
 import io.shalastra.models.CoffeeType;
 import io.shalastra.services.CoffeeMachineService;
 import io.shalastra.states.BrewCoffeeState;
+import io.shalastra.states.CheckWaterAmountState;
 import io.shalastra.states.ReduceState;
 import org.junit.Test;
 
@@ -51,5 +52,42 @@ public class CoffeeMachineServiceTest {
                 service.getCoffeeMachine().getCoffeeDispenser().getCurrentAmount());
         assertEquals("Check milk level after preparing the coffee", expectedMilkLevel,
                 service.getCoffeeMachine().getMilkTank().getCurrentAmount());
+    }
+
+    @Test
+    public void makeWaterTankEmpty_shouldRefillContainer() {
+        CoffeeMachineService service = new CoffeeMachineService();
+
+        int waterContainerLevel = service.getCoffeeMachine().getWaterTank().getCapacity();
+        int currentWaterLevel = service.getCoffeeMachine().getWaterTank().getCurrentAmount();
+
+        assertEquals("Water levels should be equal to max capacity", waterContainerLevel, currentWaterLevel);
+
+        // We have to order 3x Americano and 1x espresso to make container empty
+        service.setCurrentState(new BrewCoffeeState(CoffeeType.AMERICANO));
+        service.nextState();
+        service.nextState();
+        service.setCurrentState(new BrewCoffeeState(CoffeeType.AMERICANO));
+        service.nextState();
+        service.nextState();
+        service.setCurrentState(new BrewCoffeeState(CoffeeType.AMERICANO));
+        service.nextState();
+        service.nextState();
+        service.setCurrentState(new BrewCoffeeState(CoffeeType.ESPRESSO));
+        service.nextState();
+        service.nextState();
+
+        int expectedWaterLevel = 0;
+        currentWaterLevel = service.getCoffeeMachine().getWaterTank().getCurrentAmount();
+
+        assertEquals("Water level should be equal to " + expectedWaterLevel, expectedWaterLevel, currentWaterLevel);
+
+        service.setCurrentState(new CheckWaterAmountState());
+        service.nextState();
+
+        expectedWaterLevel = waterContainerLevel;
+        currentWaterLevel = service.getCoffeeMachine().getWaterTank().getCurrentAmount();
+
+        assertEquals("Water container should be full", expectedWaterLevel, currentWaterLevel);
     }
 }
